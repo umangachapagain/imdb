@@ -1,0 +1,59 @@
+﻿@model imdb.Models.Movie
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Movie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseYear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseYear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Plot)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Plot)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Poster)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Poster)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Producer.Name)
+        </dt>
+        <dd>
+            @Html.ActionLink((string)Model.Producer.Name, "Details", "Producers", new { id = Model.ProducerID }, new { @class = "btn btn-sm btn-info", @style = "margin-bottom:1px;" })
+            
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MovieActors.ToArray()[0].Actor.Name)
+        </dt>
+        @foreach(var actor in Model.MovieActors)
+                    {
+        <dd>
+            @Html.ActionLink((string)actor.Actor.Name, "Details", "Actors", new { id = actor.ActorID }, new {@class="btn btn-sm btn-info", @style="margin-bottom:1px;" })
+        </dd>
+                    }
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MovieID" class="btn btn-sm btn-warning">Edit</a> 
+    <a asp-action="Index" class="btn btn-sm btn-success">Back to List</a>
+</div>

@@ -1,0 +1,51 @@
+﻿@model imdb.Models.Movie
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Movie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MovieID" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReleaseYear" class="control-label"></label>
+                <input asp-for="ReleaseYear" class="form-control" />
+                <span asp-validation-for="ReleaseYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plot" class="control-label"></label>
+                <input asp-for="Plot" class="form-control" />
+                <span asp-validation-for="Plot" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Poster" class="control-label"></label>
+                <input asp-for="Poster" class="form-control" />
+                <span asp-validation-for="Poster" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Producer.Name" class="control-label"></label>
+                <select asp-for="Producer.Name" class="form-control" asp-items="ViewBag.ProducerName"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MovieActors.ToArray()[0].Actor.Name" class="control-label"></label>
+                <select multiple asp-for="MovieActors.ToArray()[0].Actor.Name" class="form-control" asp-items="ViewBag.ActorName"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
